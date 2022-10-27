@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 
-const Header = () => {
+const Header = (props) => {
   const pokemontypesArray = [
     "Normal",
     "Fire",
@@ -23,16 +23,42 @@ const Header = () => {
     "Fairy",
   ];
 
+const onChangeId = (e) =>{
+  props.setBuscaId(e.target.value)
+}
+
+const onChangeNome = (e) => {
+  props.setBuscaNome(e.target.value)
+}
+
+const onChangeOrdena = (e) => {
+  props.setOrdenaNome(e.target.value)
+}
+
+const onChangeTipo = (e) => {
+  props.setTipoPokemon(e.target.value)
+}
+
+
   return (
     <Container>
-      <input type="number" placeholder="Buscar por id" />
-      <input type="text" placeholder="Buscar por nome" />
-      <select>
+      <input 
+      type="number" 
+      placeholder="Buscar por id"
+      value={props.buscaId}
+      onChange={onChangeId}
+      />
+      <input type="text" 
+      placeholder="Buscar por nome"
+      value={props.buscaNome}
+      onChange={onChangeNome} 
+      />
+      <select value={props.ordenaNome} onChange={onChangeOrdena}>
         <option value="">Ordenar</option>
-        <option value="">Crescente</option>
-        <option value="">Decrescente</option>
+        <option value="crescente">Crescente</option>
+        <option value="decrescente">Decrescente</option>
       </select>
-      <select name="tipo" id="tipo">
+      <select value={props.tipoPokemon} onChange={onChangeTipo} name="tipo" id="tipo">
         <option value="">Selecione um tipo</option>
         {pokemontypesArray.map((type) => {
           return (
